@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Development Statistics</title>
+    <!-- Load the Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Wait for the DOM to fully load before executing JavaScript code
+        document.addEventListener('DOMContentLoaded', function() {
+            google.charts.load('current', {'packages':['corechart', 'table']});
+            google.charts.setOnLoadCallback(drawCharts);
+
+            function drawCharts() {
+                // Data
+                var data = google.visualization.arrayToDataTable([
+                    ['Category', 'Value'],
+                    ['Total Eligible Household (HHs)', 192],
+                    ['Households benefited from PMAY / State Housing Scheme', 126],
+                    ['Total Number of Toilets in GP', 11189],
+                    ['IHHL Toilets', 6333],
+                    ['Households with Access to Safe Toilets', 10073],
+                    ['Persons without space for Toilet construction', 0],
+                    ['Persons covered by Community Toilets', 158],
+                    ['Activities supported by SHGs', 42]
+                ]);
+
+                // Options for bar chart
+                var barOptions = {
+                    title: 'Community Development Statistics',
+                    chartArea: {width: '50%'},
+                    hAxis: {
+                        title: 'Value',
+                        minValue: 0
+                    },
+                    vAxis: {
+                        title: 'Category'
+                    }
+                };
+
+                // Draw the bar chart
+                var barChart = new google.visualization.BarChart(document.getElementById('barChart'));
+                barChart.draw(data, barOptions);
+
+                // Options for numeric display
+                var numericOptions = {
+                    width: 200, height: 100,
+                    redFrom: 0, redTo: 0,
+                    yellowFrom: 100, yellowTo: 150,
+                    minorTicks: 5
+                };
+
+                // Draw the numeric display
+                var numericDisplay = new google.visualization.NumberFormat({pattern: '#,###'});
+                numericDisplay.format(data, 1);
+                var numericChart = new google.visualization.Table(document.getElementById('numericChart'));
+                numericChart.draw(data, {showRowNumber: false, width: '100%'});
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Display the bar chart -->
+    <div id="barChart" style="width: 50%; height: 400px; float: left;"></div>
+
+    <!-- Display the numeric display -->
+    <div id="numericChart" style="width: 50%; float: right;"></div>
+</body>
+</html>

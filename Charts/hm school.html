@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Educational Statistics</title>
+    <!-- Load the Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            // Enrolment Data
+            var enrolmentData = google.visualization.arrayToDataTable([
+                ['Class', 'Enrolment'],
+                ['Class 5th', 998],
+                ['Class 6th', 960],
+                ['Class 8th', 406],
+                ['Class 9th', 356],
+                ['Class 10th', 426],
+                ['Class 11th', 539]
+            ]);
+
+            // Dropout Rate
+            var dropoutData = google.visualization.arrayToDataTable([
+                ['Category', 'Rate'],
+                ['Upper Primary', 27.56],
+                ['Secondary', 0]
+            ]);
+
+            // Gender-wise Enrolment
+            var genderEnrolmentData = google.visualization.arrayToDataTable([
+                ['Gender', 'Enrolment'],
+                ['Male (Upper Primary)', 1132],
+                ['Female (Upper Primary)', 1167],
+                ['Male (Secondary)', 364],
+                ['Female (Secondary)', 451],
+                ['Male (Higher Secondary)', 363],
+                ['Female (Higher Secondary)', 628]
+            ]);
+
+            // Children with Disabilities
+            var disabilitiesData = google.visualization.arrayToDataTable([
+                ['Category', 'Number'],
+                ['Total Children with Disabilities', 29],
+                ['Enrolled in Schools/Special Schools', 50]
+            ]);
+
+            // School Facilities
+            var schoolFacilitiesData = google.visualization.arrayToDataTable([
+                ['Category', 'Number'],
+                ['Public Schools', 11],
+                ['Public Schools with Functional Toilets for Girls', 70],
+                ['Schools with Toilets for Boys and Girls', 9],
+                ['Out of School Girl Children in GP', 0],
+                ['Schools with Special Education', 12]
+            ]);
+
+            // Enrolment of Girl Children
+            var girlEnrolmentData = google.visualization.arrayToDataTable([
+                ['Class', 'Enrolment'],
+                ['Class 5th (Girls)', 525],
+                ['Class 6th (Girls)', 497],
+                ['Class 8th (Girls)', 237],
+                ['Class 9th (Girls)', 191],
+                ['Class 10th (Girls)', 222],
+                ['Class 11th (Girls)', 366]
+            ]);
+
+            // Options for Charts
+            var enrolmentOptions = {
+                title: 'Enrolment Data',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Enrolment'
+                },
+                vAxis: {
+                    title: 'Class',
+                    minValue: 0
+                }
+            };
+
+            var dropoutOptions = {
+                title: 'Dropout Rate (Upper Primary & Secondary)',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Category'
+                },
+                vAxis: {
+                    title: 'Rate',
+                    minValue: 0
+                }
+            };
+
+            var genderEnrolmentOptions = {
+                title: 'Gender-wise Enrolment',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Enrolment'
+                },
+                vAxis: {
+                    title: 'Gender',
+                    minValue: 0
+                }
+            };
+
+            var disabilitiesOptions = {
+                title: 'Children with Disabilities',
+                chartArea: {width: '50%'},
+                pieHole: 0.4
+            };
+
+            var schoolFacilitiesOptions = {
+                title: 'School Facilities',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Number'
+                },
+                vAxis: {
+                    title: 'Category',
+                    minValue: 0
+                }
+            };
+
+            var girlEnrolmentOptions = {
+                title: 'Enrolment of Girl Children',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Enrolment'
+                },
+                vAxis: {
+                    title: 'Class',
+                    minValue: 0
+                }
+            };
+
+            // Draw Enrolment Bar Chart
+            var enrolmentChart = new google.visualization.BarChart(document.getElementById('enrolmentChart'));
+            enrolmentChart.draw(enrolmentData, enrolmentOptions);
+
+            // Draw Dropout Rate Line Chart
+            var dropoutChart = new google.visualization.LineChart(document.getElementById('dropoutChart'));
+            dropoutChart.draw(dropoutData, dropoutOptions);
+
+            // Draw Gender-wise Enrolment Bar Chart
+            var genderEnrolmentChart = new google.visualization.BarChart(document.getElementById('genderEnrolmentChart'));
+            genderEnrolmentChart.draw(genderEnrolmentData, genderEnrolmentOptions);
+
+            // Draw Children with Disabilities Pie Chart
+            var disabilitiesChart = new google.visualization.PieChart(document.getElementById('disabilitiesChart'));
+            disabilitiesChart.draw(disabilitiesData, disabilitiesOptions);
+
+            // Draw School Facilities Bar Chart
+            var schoolFacilitiesChart = new google.visualization.BarChart(document.getElementById('schoolFacilitiesChart'));
+            schoolFacilitiesChart.draw(schoolFacilitiesData, schoolFacilitiesOptions);
+
+            // Draw Enrolment of Girl Children Bar Chart
+            var girlEnrolmentChart = new google.visualization.BarChart(document.getElementById('girlEnrolmentChart'));
+            girlEnrolmentChart.draw(girlEnrolmentData, girlEnrolmentOptions);
+        }
+    </script>
+</head>
+<body>
+    <!-- Display the Enrolment Bar Chart -->
+    <div id="enrolmentChart" style="width: 600px; height: 400px;"></div>
+
+    <!-- Display the Dropout Rate Line Chart -->
+    <div id="dropoutChart" style="width: 600px; height: 400px;"></div>
+
+    <!-- Display the Gender-wise Enrolment Bar Chart -->
+    <div id="genderEnrolmentChart" style="width: 600px; height: 400px;"></div>
+
+    <!-- Display the Children with Disabilities Pie Chart -->
+    <div id="disabilitiesChart" style="width: 600px; height: 400px;"></div>
+
+    <!-- Display the School Facilities Bar Chart -->
+    <div id="schoolFacilitiesChart" style="width: 600px; height: 400px;"></div>
+
+    <!-- Display the Enrolment of Girl Children Bar Chart -->
+    <div id="girlEnrolmentChart" style="width: 600px; height: 400px;"></div>
+</body>
+</html>

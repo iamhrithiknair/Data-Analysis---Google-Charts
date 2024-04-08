@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Statistics</title>
+    <!-- Load the Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            // Live Birth Statistics Data
+            var liveBirthData = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Women aged 15-49 years with a live birth', 536],
+                ['Women aged 15-49 years with a live birth attended by skilled health personnel or institutional delivery', 536],
+                ['Women aged 15−49 years with a live birth in the same period', 536],
+                ['Women aged 15−49 years with a live birth in the last one year who received antenatal care four or more times', 536],
+                ['Live births of child during reference year', 536]
+            ]);
+
+            // ANC Survey Data
+            var ancSurveyData = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Total ANC registration', 533],
+                ['Number of Ante Natal Checkup registration in 1st trimester', 456],
+                ['Currently married women aged 15-49 years', 193],
+                ['Currently married women aged 15-49 years who use modern contraceptive methods', 16]
+            ]);
+
+            // Dengue Related Data
+            var dengueData = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Number of Dengue cases', 23],
+                ['Number of deaths due to Dengue', 0]
+            ]);
+
+            // Birth Statistics Data
+            var birthData = google.visualization.arrayToDataTable([
+                ['Category', 'Total number of births', 'Total number of institutional delivery'],
+                ['Statistics', 774, 536]
+            ]);
+
+            // Death Statistics Data
+            var deathData = google.visualization.arrayToDataTable([
+                ['Category', 'Deaths of children under 5 years', 'Deaths of girl under 5 years', 'Infant deaths', 'Deaths of girl neonates'],
+                ['Statistics', 2, 0.1, 4, 0.1]
+            ]);
+
+            // Options for Charts
+            var options = {
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Value'
+                },
+                vAxis: {
+                    title: 'Category',
+                    minValue: 0 // Adjusted to ensure the zero line is visible
+                }
+            };
+
+            // Draw Live Birth Bar Chart
+            var liveBirthOptions = Object.assign({}, options);
+            liveBirthOptions.title = 'Live Birth Statistics';
+            var liveBirthChart = new google.visualization.BarChart(document.getElementById('liveBirthChart'));
+            liveBirthChart.draw(liveBirthData, liveBirthOptions);
+
+            // Draw ANC Survey Bar Chart
+            var ancSurveyOptions = Object.assign({}, options);
+            ancSurveyOptions.title = 'ANC Survey Statistics';
+            var ancSurveyChart = new google.visualization.BarChart(document.getElementById('ancSurveyChart'));
+            ancSurveyChart.draw(ancSurveyData, ancSurveyOptions);
+
+            // Draw Dengue Column Chart
+            var dengueOptions = Object.assign({}, options);
+            dengueOptions.title = 'Dengue Related Statistics';
+            var dengueChart = new google.visualization.ColumnChart(document.getElementById('dengueChart'));
+            dengueChart.draw(dengueData, dengueOptions);
+
+            // Draw Birth Stacked Bar Chart
+            var birthOptions = Object.assign({}, options);
+            birthOptions.title = 'Birth Statistics';
+            var birthChart = new google.visualization.BarChart(document.getElementById('birthChart'));
+            birthChart.draw(birthData, birthOptions);
+
+            // Draw Death Stacked Bar Chart
+            var deathOptions = Object.assign({}, options);
+            deathOptions.title = 'Death Statistics';
+            var deathChart = new google.visualization.BarChart(document.getElementById('deathChart'));
+            deathChart.draw(deathData, deathOptions);
+        }
+    </script>
+</head>
+<body>
+    <!-- Display the Live Birth Bar Chart -->
+    <div id="liveBirthChart" style="width: 600px; height: 400px; float: left;"></div>
+
+    <!-- Display the ANC Survey Bar Chart -->
+    <div id="ancSurveyChart" style="width: 600px; height: 400px; float: left;"></div>
+
+    <!-- Display the Dengue Column Chart -->
+    <div id="dengueChart" style="width: 600px; height: 400px; float: left;"></div>
+
+    <!-- Display the Birth Stacked Bar Chart -->
+    <div id="birthChart" style="width: 600px; height: 400px; float: left;"></div>
+
+    <!-- Display the Death Stacked Bar Chart -->
+    <div id="deathChart" style="width: 600px; height: 400px; float: left;"></div>
+</body>
+</html>

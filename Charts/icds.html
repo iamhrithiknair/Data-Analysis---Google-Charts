@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Statistics</title>
+    <!-- Load the Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart', 'bar', 'table']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            // Numeric Displays
+            var numericData1 = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Number of children under 5 years', 3645],
+                ['Total underweight Children under 5 Years', 20],
+                ['Total number of children born during the reference year', 620],
+                ['Number of Children whose birth has been registered', 620]
+            ]);
+
+            var numericData2 = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Total number of registered girl children (0-3 years) under ICDS', 956],
+                ['Total number of registered girl children (3-6 years) under ICDS', 957]
+            ]);
+
+            var numericData3 = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Total number of beneficiaries enrolled under PMMVY', 308],
+                ['Total number of beneficiaries receiving benefits under PMMVY', 322],
+                ['Total numbers of Differently abled persons/ Women/Elderly persons/SC/STs', 504],
+                ['Number of Differently abled persons having IDs cards', 262],
+                ['Number of Differently abled persons receiving differently abled pension', 192],
+                ['Number of Differently abled persons provided with Assistive devices', 18],
+                ['Number of Boys in the age group 0-6 years', 2465],
+                ['Number of Girls in the age group 0-6 years', 1913],
+                ['Total female population of 18-49 years', 8609],
+                ['Number of Child Marriage reported', 0],
+                ['Number of child marriages Prevented', 3]
+            ]);
+
+            // Stacked Bar Charts
+            var stackedData1 = google.visualization.arrayToDataTable([
+                ['Category', 'ICDS Eligible', 'ICDS Registered'],
+                ['0-3 years', 1910, 2129],
+                ['3-6 years', 957, 1068],
+                ['Pregnant Women and Lactating Mothers', 711, 911],
+                ['Total eligible children', 4378, 3197],
+                ['0-3 years with disabilities', 2, null]
+            ]);
+
+            var stackedData2 = google.visualization.arrayToDataTable([
+                ['Category', 'Anganwadis'],
+                ['Number of Anganwadis', 36],
+                ['Own Building', 31],
+                ['Adequate and Safe drinking water', 36],
+                ['Child friendly toilets', 0],
+                ['Electricity', 36],
+                ['Colourful Wall Painting', 10],
+                ['Open spaces for outdoor activities', 22],
+                ['First Aid Box and medicine Kit', 0],
+                ['Weighing Machine', 36],
+                ['Community Growth Chart and MCP Card', 0],
+                ['Smartphones for AWWs', 36],
+                ['RAMPS for Physically challenged children/persons', 0],
+                ['SNP & Gas Connection', 36],
+                ['Nutrition Garden', 10],
+                ['Computer/mobile phone for Children', 0]
+            ]);
+
+            // Boolean Chart
+            var booleanData = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Tracking crimes against women, children, aged and differently abled', true],
+                ['GP made list of Vulnerable groups', true],
+                ['Community-based support mechanism for elderly, homeless and destitute', true],
+                ['Support for Victims of unforeseen circumstances', true],
+                ['Established a livelihood mechanism for victims', true]
+            ]);
+
+            // Numeric Display Options
+            var numericOptions = {
+                title: 'Numeric Displays'
+            };
+
+            // Stacked Bar Chart Options
+            var stackedOptions1 = {
+                title: 'ICDS Statistics',
+                isStacked: true
+            };
+
+            var stackedOptions2 = {
+                title: 'Anganwadi Facilities',
+                isStacked: true
+            };
+
+            // Boolean Chart Options
+            var booleanOptions = {
+                title: 'Boolean Chart'
+            };
+
+            // Draw Numeric Displays
+            var numericChart1 = new google.visualization.Table(document.getElementById('numericDisplay1'));
+            numericChart1.draw(numericData1, numericOptions);
+
+            var numericChart2 = new google.visualization.Table(document.getElementById('numericDisplay2'));
+            numericChart2.draw(numericData2, numericOptions);
+
+            var numericChart3 = new google.visualization.Table(document.getElementById('numericDisplay3'));
+            numericChart3.draw(numericData3, numericOptions);
+
+            // Draw Stacked Bar Charts
+            var stackedChart1 = new google.visualization.BarChart(document.getElementById('stackedChart1'));
+            stackedChart1.draw(stackedData1, stackedOptions1);
+
+            var stackedChart2 = new google.visualization.BarChart(document.getElementById('stackedChart2'));
+            stackedChart2.draw(stackedData2, stackedOptions2);
+
+            // Draw Boolean Chart
+            var booleanChart = new google.visualization.Table(document.getElementById('booleanChart'));
+            booleanChart.draw(booleanData, booleanOptions);
+        }
+    </script>
+</head>
+<body>
+    <!-- Numeric Displays -->
+    <div id="numericDisplay1" style="width: 600px; height: 300px; margin-bottom: 20px;"></div>
+    <div id="numericDisplay2" style="width: 600px; height: 300px; margin-bottom: 20px;"></div>
+    <div id="numericDisplay3" style="width: 600px; height: 300px; margin-bottom: 20px;"></div>
+
+    <!-- Stacked Bar Charts -->
+    <div id="stackedChart1" style="width: 600px; height: 400px; margin-bottom: 20px;"></div>
+    <div id="stackedChart2" style="width: 600px; height: 400px; margin-bottom: 20px;"></div>
+
+    <!-- Boolean Chart -->
+    <div id="booleanChart" style="width: 600px; margin-bottom: 20px;"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Combined Chart Example</title>
+    <!-- Load the Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Wait for the DOM to fully load before executing JavaScript code
+        document.addEventListener('DOMContentLoaded', function() {
+            google.charts.load('current', {'packages':['corechart', 'table']});
+            google.charts.setOnLoadCallback(drawCharts);
+
+            function drawCharts() {
+                // Data for the bar chart (valued criteria)
+                var valuedCriteriaData = google.visualization.arrayToDataTable([
+                    ['Criteria', 'Surveyed Value'],
+                    ['Number of Households with Water Tap connections', 4908],
+                    ['Total number of Households not covered by Pipe Water Supply(PWS)', 465]
+                ]);
+
+                // Options for the bar chart (valued criteria)
+                var valuedCriteriaOptions = {
+                    title: 'Household Water Supply Infrastructure Survey Results',
+                    chartArea: {width: '50%'},
+                    hAxis: {
+                        title: 'Surveyed Value',
+                        minValue: 0
+                    },
+                    vAxis: {
+                        title: 'Criteria'
+                    }
+                };
+
+                // Draw the valued criteria bar chart
+                var valuedCriteriaChart = new google.visualization.BarChart(document.getElementById('valuedCriteriaChart'));
+                valuedCriteriaChart.draw(valuedCriteriaData, valuedCriteriaOptions);
+
+                // Data for the boolean chart for Yes/No criteria
+                var yesNoCriteriaData = google.visualization.arrayToDataTable([
+                    ['Criteria', 'Fulfilled'],
+                    ['Whether periodic cleaning of Over Head Tanks (OHTs), Ground Level Reservoirs (GLRs) and Hand Pump platforms in rural areas and providing drinking water with effective chlorination', true],
+                    ['Whether GP has Adequate water sources', true],
+                    ['Whether GP has Construction of Water treatment plant', true],
+                    ['Whether GP has Pipeline connection for water supply to all houses', false],
+                    ['Whether GP has Pump house with water pump', false]
+                ]);
+
+                // Options for the boolean chart for Yes/No criteria
+                var yesNoCriteriaOptions = {
+                    title: 'Availability of Infrastructure for Water Supply Survey Results',
+                    allowHtml: true
+                };
+
+                // Draw the boolean chart for Yes/No criteria
+                var yesNoCriteriaChart = new google.visualization.Table(document.getElementById('yesNoCriteriaChart'));
+                yesNoCriteriaChart.draw(yesNoCriteriaData, yesNoCriteriaOptions);
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Display the valued criteria bar chart -->
+    <div id="valuedCriteriaChart" style="width: 50%; height: 300px; float: left;"></div>
+
+    <!-- Display the boolean chart for Yes/No criteria -->
+    <div id="yesNoCriteriaChart" style="width: 50%; float: right;"></div>
+</body>
+</html>

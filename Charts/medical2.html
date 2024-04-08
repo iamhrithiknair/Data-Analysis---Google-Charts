@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Statistics</title>
+    <!-- Load the Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart', 'bar', 'table']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            // Live Birth Statistics Data
+            var liveBirthData = google.visualization.arrayToDataTable([
+                ['Gender', 'Number of Live Births'],
+                ['Girls', 27],
+                ['Boys', 269]
+            ]);
+
+            // Women's Health Statistics Data
+            var womenHealthData = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Women aged (30-49) screened under the NCD', 1038],
+                ['Maternal Deaths during the reference year', 7]
+            ]);
+
+            // Boolean Data for PHC/HSC Infrastructure
+            var phcHscData = google.visualization.arrayToDataTable([
+                ['Facilities with respect to PHC/HSC', 'Available'],
+                ['Own Building', true],
+                ['Boundary Wall and Gate', true],
+                ['Electricity', true],
+                ['Telephone', true],
+                ['Firefighting Equipment', false],
+                ['Adequate Furniture', true],
+                ['Adequate Technically Trained Manpower', true],
+                ['Adequate & Functional Equipment', true],
+                ['Available of Sufficient Quantity of Medicines', true],
+                ['Referral Service Facility (Ambulance)', false],
+                ['Adequate Space', true],
+                ['Sitting Arrangement in Waiting Area', true],
+                ['Adequate Water Supply with Water Storage Facility', true],
+                ['Toilet with Adequate Water Supply for Male and Female Separately', true],
+                ['Containment Zone for Disposal of Waste Products', true],
+                ['Display Posters (IEC)/ Develop IEC Corner for Health Education', true],
+                ['Ramps for Physically Challenged Children/Persons', true]
+            ]);
+
+            // PM-JAY Coverage Data
+            var pmjayData = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Households Covered', 120]
+            ]);
+
+            // Options for PHC/HSC Infrastructure Table
+            var tableOptions = {
+                title: 'PHC/HSC Infrastructure',
+                showRowNumber: false,
+                width: '100%',
+                height: '100%'
+            };
+
+            // Draw Live Birth Column Chart
+            var liveBirthChart = new google.visualization.ColumnChart(document.getElementById('liveBirthChart'));
+            liveBirthChart.draw(liveBirthData, {title: 'Live Birth Statistics'});
+
+            // Draw Women's Health Column Chart
+            var womenHealthChart = new google.visualization.ColumnChart(document.getElementById('womenHealthChart'));
+            womenHealthChart.draw(womenHealthData, {title: "Women's Health Statistics"});
+
+            // Draw PHC/HSC Infrastructure Table
+            var phcHscTable = new google.visualization.Table(document.getElementById('phcHscTable'));
+            phcHscTable.draw(phcHscData, tableOptions);
+
+            // Draw PM-JAY Coverage Numeric Display
+            var pmjayNumericDisplay = new google.visualization.NumberFormat({pattern: '#,###'});
+            pmjayNumericDisplay.format(pmjayData, 1);
+            var pmjayChart = new google.visualization.Table(document.getElementById('pmjayChart'));
+            pmjayChart.draw(pmjayData, {showRowNumber: false, width: '100%'});
+        }
+    </script>
+</head>
+<body>
+    <!-- Display the Live Birth Column Chart -->
+    <div id="liveBirthChart" style="width: 400px; height: 300px; float: left;"></div>
+
+    <!-- Display the Women's Health Column Chart -->
+    <div id="womenHealthChart" style="width: 400px; height: 300px; float: left;"></div>
+
+    <!-- Display the PHC/HSC Infrastructure Table -->
+    <div id="phcHscTable" style="width: 100%; height: auto; float: left;"></div>
+
+    <!-- Display the PM-JAY Coverage Numeric Display -->
+    <div id="pmjayChart" style="width: 400px; float: left;"></div>
+</body>
+</html>
